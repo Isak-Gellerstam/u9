@@ -7,39 +7,53 @@
 # 7. ÖVERKURS: Skapa en egen modul och importera till ett program
 
 
-import os
 
-list = ["oliver","är","inte","rolig"]
+import os
+import time
+import msvcrt
+from colors import colors as clr
+
+min_lista = ["oliver", "är", "inte", "rolig"]
 
 while True:
     os.system('cls')        
+    
+    print(f"{clr.BLUE}Tryck på valfri knapp för att gå vidare{clr.DEFAULT}")
+    key = msvcrt.getwch()
+    print(f"{clr.YELLOW}Du klickade på: {key}{clr.DEFAULT}")
+    time.sleep(1)
 
-    print(list)
+    os.system('cls')
+    time.sleep(1)
+    
+    print(f"\n{clr.BLUE}{min_lista}{clr.DEFAULT}\n")
+    time.sleep(1)
+    
+    val = input("(+) för att addera (-) för att ta bort (q) för att avsluta: ").lower()
 
-    val = input("(+) för att addera (-) för att ta bort").lower()
-
-    if val =="+":
-        namn = input("vad vill du lägga till : ")
-        list.append(namn)
+    if val == "+":
+        namn = input(f"{clr.GREEN}Vad vill du lägga till: {clr.DEFAULT}")
+        min_lista.append(namn)
         os.system('cls')
-        print(f"la till {namn}")
-
+        time.sleep(1)
+        print(f"{clr.BLUE}La till '{namn}'{clr.DEFAULT}")
 
     elif val == "-":
-        namn = input("Vad vill du ta bort? : ")
-        if namn in list:
-            list.remove(namn)
+        namn = input(f"{clr.RED}Vad vill du ta bort?: {clr.DEFAULT}")
+        if namn in min_lista:
+            min_lista.remove(namn)
             os.system('cls')
-            print(f" Tog bort '{namn}'!")
+            time.sleep(1)
+            print(f"{clr.BLUE}Tog bort '{namn}'!{clr.DEFAULT}")
         else:
-            print("Namnet finns inte i listan.")
+            print(f"{clr.RED}Namnet finns inte i listan.{clr.DEFAULT}")
+            time.sleep(2)
 
     elif val == "q":
         os.system('cls')
+        print("Hejdå!")
         break
 
     else:
-        print("error")
-        
-
-
+        print(f"{clr.RED}Error: Ogiltigt val.{clr.DEFAULT}")
+        time.sleep(2)
